@@ -1,0 +1,68 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/factura"
+           xmlns:tns="http://example.com/factura"
+           elementFormDefault="qualified">
+
+    <!-- Petición: solo datos de la factura (sin firma) -->
+    <xs:element name="facturaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="emisor" type="tns:emisor"/>
+                <xs:element name="receptor" type="tns:receptor"/>
+                <xs:element name="fechaEmision" type="xs:dateTime"/>
+                <xs:element name="numeroFactura" type="xs:string"/>
+                <xs:element name="productos" type="tns:productos"/>
+                <xs:element name="total" type="xs:decimal"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Respuesta: factura con firma incluida -->
+    <xs:element name="facturaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="emisor" type="tns:emisor"/>
+                <xs:element name="receptor" type="tns:receptor"/>
+                <xs:element name="fechaEmision" type="xs:dateTime"/>
+                <xs:element name="numeroFactura" type="xs:string"/>
+                <xs:element name="productos" type="tns:productos"/>
+                <xs:element name="total" type="xs:decimal"/>
+                <!-- Firma simulada que genera el servicio -->
+                <xs:element name="firmaDigital" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Tipos auxiliares -->
+    <xs:complexType name="emisor">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="nit" type="xs:string"/>
+            <xs:element name="direccion" type="xs:string"/>
+            <xs:element name="telefono" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="receptor">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="nit" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="productos">
+        <xs:sequence>
+            <xs:element name="producto" type="tns:producto" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="producto">
+        <xs:sequence>
+            <xs:element name="descripcion" type="xs:string"/>
+            <xs:element name="cantidad" type="xs:decimal"/>
+            <xs:element name="precioUnitario" type="xs:decimal"/>
+            <xs:element name="totalProducto" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
