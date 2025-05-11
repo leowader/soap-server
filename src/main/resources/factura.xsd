@@ -9,7 +9,7 @@
             <xs:sequence>
                 <xs:element name="emisor" type="tns:emisor"/>
                 <xs:element name="receptor" type="tns:receptor"/>
-                <xs:element name="fechaEmision" type="xs:dateTime"/>
+                <xs:element name="fechaEmision" type="xs:string"/>
                 <xs:element name="numeroFactura" type="xs:string"/>
                 <xs:element name="productos" type="tns:productos"/>
                 <xs:element name="total" type="xs:decimal"/>
@@ -23,7 +23,7 @@
             <xs:sequence>
                 <xs:element name="emisor" type="tns:emisor"/>
                 <xs:element name="receptor" type="tns:receptor"/>
-                <xs:element name="fechaEmision" type="xs:dateTime"/>
+                <xs:element name="fechaEmision" type="xs:string"/>
                 <xs:element name="numeroFactura" type="xs:string"/>
                 <xs:element name="productos" type="tns:productos"/>
                 <xs:element name="total" type="xs:decimal"/>
